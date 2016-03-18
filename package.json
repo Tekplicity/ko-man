@@ -1,0 +1,27 @@
+{
+  "name": "an-intern-cart",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "co-request": "^1.0.0",
+    "expect.js": "^0.3.1",
+    "koa": "^1.2.0",
+    "koa-bodyparser": "^2.0.1",
+    "koa-jwt": "^1.1.2",
+    "koa-passport": "^1.2.0",
+    "koa-router": "^5.4.0",
+    "koa-session": "^3.3.1",
+    "mocha": "^2.4.5",
+    "passport-local": "^1.0.0"
+  },
+  "devDependencies": {
+    "co-mocha": "^1.1.2"
+  },
+  "scripts": {
+    "start": "node ./server/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
