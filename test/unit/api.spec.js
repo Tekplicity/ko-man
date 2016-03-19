@@ -1,18 +1,18 @@
 'use strict';
+var config = require('../../server/config/environment')
+
 var expect = require('expect.js');
-let request = require("co-request");
-let mocha = require('mocha')
-let coMocha = require('co-mocha')
+var request = require("co-request");
+var mocha = require('mocha')
+var coMocha = require('co-mocha')
 coMocha(mocha);// Monkey patching mocha
-
-
 
 var access_token;
 
 // Revealing Pattern for Mocha test
 
 // ---------------------------------
-// Interface
+// Test Interface
 // ---------------------------------
 describe('API', function(){
     it('should authenticate', authentication);
@@ -20,18 +20,18 @@ describe('API', function(){
 })
 
 // ---------------------------------
-// Definition
+// Test Definition
 // ---------------------------------
 
 /**
 * Test authentication
 */
 function *authentication(){
-    var result = yield request({
+    let result = yield request({
         method: 'POST',
-        url: 'http://localhost:3000/v1/login',
+        url: 'http://localhost:'+config.port+'/v1/signup',
         body: {
-            username: 'Alex',
+            name: 'Alex',
             password: 'Password!'
         },
         json: true
@@ -47,7 +47,7 @@ function *authentication(){
 * Test retreving from car
 */
 function *getUser(){
-    var result = yield request.get('http://localhost:3000/v1/', {
+    let result = yield request.get('http://localhost:'+config.port+'/v1/', {
         headers: {
             'Authorization': 'Bearer ' + access_token
         }

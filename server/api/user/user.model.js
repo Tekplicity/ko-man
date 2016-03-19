@@ -1,5 +1,7 @@
 var userSchema = require('./user.schema')
 var mongoose = require('mongoose');
+var crypto = require('crypto');
+
 /**
  * Methods
  */

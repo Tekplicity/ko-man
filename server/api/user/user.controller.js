@@ -1,7 +1,6 @@
 'use strict';
 var auth = require('../../auth');
 var User = require('./user.model');
-var controller = {};
 
 var validationError = function(res, err) {
     return res.json(422, err);
@@ -16,17 +15,21 @@ var validationError = function(res, err) {
  * Get list of users
  * restriction: 'admin'
  */
-// exports.index = function *(next) {
-//   User.find({}, '-salt -hashedPassword', function (err, users) {
-//     if(err) return this.request.send(500, err);
-//     this.body = users;
-//   });
-// };
+exports.index = function *(next){
+    try {
+        let users = yield User.find({}, '-salt -hashedPassword');
+        this.body = users;
+    } catch (err) {
+            console.log('create index:', err)
+        this.throw(500, err);
+    }
+    yield next;
+}
 
 /**
 * Creates a new user
 */
-controller.create = function *(next) {
+exports.create = function *(next){
     console.log('Request', this.request.body)
     var newUser = new User(this.request.body);
     newUser.provider = 'local';
@@ -42,18 +45,10 @@ controller.create = function *(next) {
 };
 
 
-controller.list = function *(next){
 
-    console.log('list()')
-    yield delay(1000);
-    this.body = 'delayed: ' + new Date();
-    yield next;
-}
 
 function delay(time){
     return new Promise((resolve, reject) => {
         setTimeout(resolve, time);
     });
 }
-
-module.exports = controller;
