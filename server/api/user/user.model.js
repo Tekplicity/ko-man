@@ -1,5 +1,5 @@
 var userSchema = require('./user.schema')
-
+var mongoose = require('mongoose');
 /**
  * Methods
  */

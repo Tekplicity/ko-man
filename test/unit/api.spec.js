@@ -16,7 +16,7 @@ var access_token;
 // ---------------------------------
 describe('API', function(){
     it('should authenticate', authentication);
-    it('should get user', user);
+    it('should get user', getUser);
 })
 
 // ---------------------------------
@@ -37,21 +37,19 @@ function *authentication(){
         json: true
     });
 
-    var re = new RegExp('Bearer');
-    var results = re.exec(result.body)
     expect(result.statusCode).to.be(200);
-    expect(results).to.be.an(Array);
+    expect(result.body.token).to.be.a('string');
 
-    access_token = result.body;
+    access_token = result.body.token;
 }
 
 /**
 * Test retreving from car
 */
-function *getCart(){
+function *getUser(){
     var result = yield request.get('http://localhost:3000/v1/', {
         headers: {
-            'Authorization': access_token
+            'Authorization': 'Bearer ' + access_token
         }
     });
     console.log(result.body)

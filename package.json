@@ -12,7 +12,9 @@
     "koa-passport": "^1.2.0",
     "koa-router": "^5.4.0",
     "koa-session": "^3.3.1",
+    "lodash": "^4.6.1",
     "mocha": "^2.4.5",
+    "mongoose": "^4.4.8",
     "passport-local": "^1.0.0"
   },
   "devDependencies": {
