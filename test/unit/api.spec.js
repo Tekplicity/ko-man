@@ -15,8 +15,10 @@ var access_token;
 // Test Interface
 // ---------------------------------
 describe('API', function(){
-    it('should authenticate', authentication);
+    it('should signup user', signup);
     it('should get user', getUser);
+
+        it('should signup w/ bad data', badSignup);
 })
 
 // ---------------------------------
@@ -26,13 +28,36 @@ describe('API', function(){
 /**
 * Test authentication
 */
-function *authentication(){
+function *signup(){
     let result = yield request({
         method: 'POST',
         url: 'http://localhost:'+config.port+'/v1/signup',
         body: {
             name: 'Alex',
-            password: 'Password!'
+            password: 'Password!',
+            email: 'test@alexgian.com'
+        },
+        json: true
+    });
+
+    expect(result.statusCode).to.be(200);
+    expect(result.body.token).to.be.a('string');
+
+    access_token = result.body.token;
+}
+
+/**
+* Test authentication
+*/
+function *badSignup(){
+    let result = yield request({
+        method: 'POST',
+        url: 'http://localhost:'+config.port+'/v1/signup',
+        body: {
+            name: 'Alex',
+            password: 'Password!',
+            email: 'test@alexgian.com',
+            some:'thing'
         },
         json: true
     });
