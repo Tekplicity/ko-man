@@ -9,10 +9,6 @@ co(function*(){
         .find({})
         .remove();
         console.log('Removed!')
-
-
-
-
     } catch(err){
         console.error('Error during seeding:', err);
     }

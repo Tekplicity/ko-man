@@ -1,12 +1,11 @@
 {
-  "name": "an-intern-cart",
+  "name": "ko-man",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./server/app.js",
   "dependencies": {
     "co": "^4.6.0",
     "co-request": "^1.0.0",
-    "expect.js": "^0.3.1",
     "koa": "^1.2.0",
     "koa-bodyparser": "^2.0.1",
     "koa-jwt": "^1.1.2",
@@ -14,12 +13,19 @@
     "koa-router": "^5.4.0",
     "koa-session": "^3.3.1",
     "lodash": "^4.6.1",
-    "mocha": "^2.4.5",
     "mongoose": "^4.4.8",
     "passport-local": "^1.0.0"
   },
   "devDependencies": {
-    "co-mocha": "^1.1.2"
+    "browser-sync": "^2.11.2",
+    "co-mocha": "^1.1.2",
+    "expect.js": "^0.3.1",
+    "gulp": "^3.9.1",
+    "gulp-env": "^0.4.0",
+    "gulp-nodemon": "^2.0.6",
+    "gulp-util": "^3.0.7",
+    "mocha": "^2.4.5",
+    "wrench": "^1.5.8"
   },
   "scripts": {
     "start": "node ./server/app.js",
