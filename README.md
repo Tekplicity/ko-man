@@ -1,3 +1,4 @@
+![Ko-man](http://i.imgur.com/WE6A3NN.png)
 # README #
 
 This README would normally document whatever steps are necessary to get your application up and running.
