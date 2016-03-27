@@ -17,8 +17,7 @@ var access_token;
 describe('API', function(){
     it('should signup user', signup);
     it('should get user', getUser);
-
-        it('should signup w/ bad data', badSignup);
+    it('should fail if signing up using the same user', badSignup);
 })
 
 // ---------------------------------
@@ -31,7 +30,7 @@ describe('API', function(){
 function *signup(){
     let result = yield request({
         method: 'POST',
-        url: 'http://localhost:'+config.port+'/v1/signup',
+        url: 'http://localhost:'+config.port+'/api/user/signup',
         body: {
             name: 'Alex',
             password: 'Password!',
@@ -52,7 +51,7 @@ function *signup(){
 function *badSignup(){
     let result = yield request({
         method: 'POST',
-        url: 'http://localhost:'+config.port+'/v1/signup',
+        url: 'http://localhost:'+config.port+'/api/user/signup',
         body: {
             name: 'Alex',
             password: 'Password!',
@@ -62,8 +61,8 @@ function *badSignup(){
         json: true
     });
 
-    expect(result.statusCode).to.be(200);
-    expect(result.body.token).to.be.a('string');
+    expect(result.statusCode).to.be(422);
+    expect(result.body.token).to.be(undefined);
 
     access_token = result.body.token;
 }
@@ -72,7 +71,7 @@ function *badSignup(){
 * Test retreving from car
 */
 function *getUser(){
-    let result = yield request.get('http://localhost:'+config.port+'/v1/', {
+    let result = yield request.get('http://localhost:'+config.port+'/api/user/', {
         headers: {
             'Authorization': 'Bearer ' + access_token
         }

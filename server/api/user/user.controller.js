@@ -40,6 +40,7 @@ exports.create = function *(next){
         var token = auth.signToken(user._id);
         this.body = { token: token };
     } catch (err) {
+        console.log('create error', err)
         this.throw(422, err);
     }
 };

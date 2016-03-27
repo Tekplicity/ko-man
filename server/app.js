@@ -1,10 +1,6 @@
 'use strict';
 // Other Libraries
 var path = require('path');
-
-// Koa Libraries
-var bodyParser = require('koa-bodyparser');
-
 var koa = require('koa');
 
 
@@ -20,15 +16,7 @@ if(config.seedDB) { console.log('seeding...'); require('./config/seed'); }
 // The app
 var app = koa();
 
-// KOA Configs
-app.use(bodyParser());
-
-// Routes
-var userRoutes = require('./api/user')
-
-app.use(userRoutes.routes())
-app.use(userRoutes.allowedMethods())
-
-//const ROOT_DIR = path.resolve(__dirname, '..');
+require('./config/server')(app);
+require('./routes')(app);
 
 app.listen(config.port);
