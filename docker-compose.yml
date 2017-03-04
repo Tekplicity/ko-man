@@ -1,0 +1,16 @@
+mongodb:
+    image: mongo:latest
+    ports:
+        - "27017:27017"
+
+redis:
+    image: redis:3.2.4-alpine
+
+app:
+    build: ./
+
+    environment:
+        NODE_ENV: development
+    links:
+       - mongodb
+       - redis
